@@ -1,0 +1,31 @@
+{
+  "name": "<%= _.slugify(websiteName) %>",
+  "version": "0.0.0",
+  "dependencies": {<% if (includeCreate) { %>
+    "createjs-preloadjs": "*",
+    "createjs-tweenjs": "*",
+    "createjs-soundjs": "*",
+    "easeljs": "*",<% } if (includePolyfill) { %>
+    "css3pie": "*",
+    "selectivizr": "*",
+    "background-size-polyfill": "*",
+    "box-sizing-polyfill": "*",
+    "respond": "*",
+    "css3-mediaqueries-js": "*",<% } if (jQueryVersion == 'One') { %>
+    "jquery": "~1.11",<% } if (jQueryVersion == 'Two') { %>
+    "jquery": "~2.1",<% } if (includeJqueryUi) { %>
+    "jqueryui": "*",
+    "jqueryui-touch-punch": "*",<% } if (includeJqueryPlugins) { %>
+    "jquery-backstretch": "*",
+    "Buttons": "*",<% } if (includeExample) { %>
+    "FitText.js": "git://github.com/Milanowicz/FitText.js.git",
+    "BrowserDetection.js": "git://github.com/Milanowicz/BrowserDetection.js.git",<% } if (includeMasonry) { %>
+    "masonry": "*",
+    "imagesloaded": "*",<% } if (includeModernizr) { %>
+    "modernizr": "*",<% } %>
+    "font-awesome": "~4.0.3",
+    "CSSLessCollection": "git://github.com/Milanowicz/CSSLessCollection.git",
+    "normalize-css": "*"
+  }
+}
+

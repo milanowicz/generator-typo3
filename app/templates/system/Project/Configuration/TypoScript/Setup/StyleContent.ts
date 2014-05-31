@@ -1,0 +1,2 @@
+tt_content.bullets.20.split.1.wrap = <li class="odd no-liststyle"><i class="icon-hand-right"> </i>|</li>
+tt_content.bullets.20.split.2.wrap = <li class="even no-liststyle"><i class="icon-hand-right"> </i>|</li>

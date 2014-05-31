@@ -1,0 +1,2 @@
+<INCLUDE_TYPOSCRIPT: source="FILE:system/<%= websiteProject %>/Configuration/TypoScript/Constants/Config.ts">
+<INCLUDE_TYPOSCRIPT: source="FILE:system/<%= websiteProject %>/Configuration/TypoScript/Constants/Page.ts">

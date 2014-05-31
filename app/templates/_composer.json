@@ -1,0 +1,14 @@
+{
+    "config": {
+        "vendor-dir": "../vendor"
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "http://composer.lightwerk.com/"
+        }
+    ],
+    "require": {
+        "typo3/cms": "~6.2"
+    }
+}

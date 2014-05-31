@@ -1,0 +1,14 @@
+.project
+._*
+.~lock.*
+.DS_Store
+.idea
+.project
+.buildpath
+.DS_Store
+Thumbs.db
+npm-debug.log
+
+.settings/
+node_modules/
+temp/

@@ -1,0 +1,44 @@
+{
+  "name": "generator-typo3",
+  "version": "0.0.1",
+  "description": "Yeoman generator for TYPO3 6.2",
+  "keywords": [
+    "yeoman-generator",
+    "typo3",
+    "fluid"
+  ],
+  "homepage": "https://github.com/Milanowicz/generator-typo3",
+  "bugs": "https://github.com/Milanowicz/generator-typo3/issues",
+  "author": {
+    "name": "Milanowicz",
+    "email": "amaru-jive@gmx.de"
+  },
+  "license": "MIT",
+  "main": "app/index.js",
+  "repository": {
+    "type": "git",
+	"url": "git://github.com/Milanowicz/generator-typo3.git",
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "files": [
+    "app"
+  ],
+  "keywords": [
+    "yeoman-generator"
+  ],
+  "dependencies": {
+    "yeoman-generator": "~0.16.0",
+    "chalk": "~0.4.0"
+  },
+  "devDependencies": {
+    "mocha": "*"
+  },
+  "peerDependencies": {
+    "yo": ">=1.0.0"
+  }
+}
