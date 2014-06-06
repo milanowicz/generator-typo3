@@ -1,0 +1,357 @@
+/**#######################################################################
+ *                     Elementary HTML Website Styles
+ * #######################################################################
+ */
+
+* {
+  @include MarginPadding;
+  @include BoxSizing;
+}
+
+html {
+  @include BoxSize(100%);
+}
+
+body {
+  @include Text($FontText, $FontSizeNormalText, $ColorBlack, normal, $FontLineHeightNormalText, none, normal);
+  font-size: 100%;
+}
+
+h1 {
+  @include Text($FontHead, 40, $ColorBlack, normal, 50, uppercase, bold);
+  @include MarginPadding(0, 20px 0);
+}
+
+h2 {
+  @include Text($FontHead, 32, $ColorBlack, italic, 40, none, bold);
+  @include MarginPadding(0, 15px 0);
+}
+
+h3 {
+  @include Text($FontHead, 24, $ColorBlack, normal, 38, none, bold);
+  @include MarginPadding(0, 10px 0);
+}
+
+h4 {
+  @include Text($FontHead, 24, $ColorBlack, normal, 30, none, bold);
+  @include MarginPadding(0, 5px 0);
+}
+
+h5 {
+  @include Text($FontHead, 20, $ColorBlack, normal, 24, none, bold);
+  @include MarginPadding(0, 10px 0);
+}
+
+h6 {
+  @include Text($FontHead, 20, $ColorBlack, italic, 24, none, bold);
+  @include MarginPadding(0, 10px 0 5px);
+}
+
+a {
+  @include Text($FontText, $FontSizeNormalText, $ColorLink, normal, $FontLineHeightNormalText, none, normal);
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+    color: $ColorLink;
+    @include OutlineBorder;
+  }
+  &:active {
+    color: $ColorLink;
+    @include OutlineBorder;
+  }
+  &:focus {
+    color: $ColorLink;
+    @include OutlineBorder;
+  }
+  &:visited {
+    color: $ColorLink;
+    @include OutlineBorder;
+  }
+}
+
+figure {
+  @include MarginPadding();
+}
+
+img {
+  @include OutlineBorder;
+}
+
+p {
+  @include Text($FontText, $FontSizeNormalText, $ColorBlack, normal, $FontLineHeightNormalText, none, normal);
+  @include MarginPadding(5px 0);
+}
+
+pre {
+  @include Text($FontConsole, $FontSizeNormalText, $ColorBlack, normal, $FontLineHeightNormalText, none, normal);
+  text-align: left;
+  @include MarginPadding(10px 0);
+  word-break: keep-all;
+}
+
+ul {
+  list-style: none;
+  @include Text($FontText, $FontSizeNormalText, $ColorBlack, normal, $FontLineHeightNormalText, none, normal);
+  @include MarginPadding(5px 0 20px 15px);
+
+  li {
+    list-style: none;
+    @include Text($FontText, $FontSizeNormalText, $ColorBlack, normal, $FontLineHeightNormalText, none, normal);
+    @include MarginPadding(5px 0 0 15px);
+
+    &:first-child {
+      @include MarginPadding(10px 0 0 15px);
+    }
+  }
+}
+
+
+/**
+ * HTML Helper
+ */
+.clear {
+  clear: both;
+}
+
+
+/**
+ *  Column Grid View
+ */
+div {
+  &.Column1 {
+    display: inline-block;
+    & > div {
+      float: left;
+    }
+  }
+  &.Column2 {
+    display: inline-block;
+    & > div {
+      float: left;
+    }
+  }
+  &.Column3 {
+    display: inline-block;
+    & > div {
+      float: left;
+    }
+  }
+  &.Column4 {
+    display: inline-block;
+    & > div {
+      float: left;
+    }
+  }
+  &.Column5 {
+    display: inline-block;
+    & > div {
+      float: left;
+    }
+  }
+  &.Column6 {
+    display: inline-block;
+    & > div {
+      float: left;
+    }
+  }
+  &.Column7 {
+    display: inline-block;
+    & > div {
+      float: left;
+    }
+  }
+  &.Column8 {
+    display: inline-block;
+    & > div {
+      float: left;
+    }
+  }
+  &.Column9 {
+    display: inline-block;
+    & > div {
+      float: left;
+    }
+  }
+  &.Column10 {
+    display: inline-block;
+    & > div {
+      float: left;
+    }
+  }
+  &.Column11 {
+    display: inline-block;
+    & > div {
+      float: left;
+    }
+  }
+  &.Column12 {
+    display: inline-block;
+    & > div {
+      float: left;
+    }
+  }
+}
+
+
+/**#######################################################################
+ *                          Main Website Layout 
+ * #######################################################################
+ */
+
+header.Page {
+  display: inline-block;
+  @include BoxSize(100%, auto);
+}
+
+
+main {
+  display: inline-block;
+  @include BoxSize(100%, auto);
+}
+
+
+footer.Page {
+  display: inline-block;
+  @include BoxSize(100%, auto);
+}
+
+
+/**#######################################################################
+ *                      Media Queries for Responsive
+ * #######################################################################
+ */
+
+
+// OVER Main Content Width
+@media all and (min-width: $MainContentWidth) {
+  div {
+    &.Column1 {
+      & > div {
+        width: 100%;
+      }
+    }
+    &.Column2 {
+      & > div {
+        width: 50%;
+      }
+    }
+    &.Column3 {
+      & > div {
+        width: 33%;
+      }
+    }
+    &.Column4 {
+      & > div {
+        width: 25%;
+      }
+    }
+    &.Column5 {
+      & > div {
+        width: 20%;
+      }
+    }
+    &.Column6 {
+      & > div {
+        width: 16.666666666666%;
+      }
+    }
+    &.Column7 {
+      & > div {
+        width: 14.285714285714%;
+      }
+    }
+    &.Column8 {
+      & > div {
+        width: 12.5%;
+      }
+    }
+    &.Column9 {
+      & > div {
+        width: 11.1111111111111%;
+      }
+    }
+    &.Column10 {
+      & > div {
+        width: 10%;
+      }
+    }
+    &.Column11 {
+      & > div {
+        width: 9.09090909090909%;
+      }
+    }
+    &.Column12 {
+      & > div {
+        width: 8.33333333333333%;
+      }
+    }
+  }
+}
+
+
+// UNDER Main Content Width
+@media all and (max-width: $MainContentWidth) {
+  div {
+    &.Column1 {
+      & > div {
+        width: 100%;
+      }
+    }
+    &.Column2 {
+      & > div {
+        width: 100%;
+      }
+    }
+    &.Column3 {
+      & > div {
+        width: 50%;
+      }
+    }
+    &.Column4 {
+      & > div {
+        width: 50%;
+      }
+    }
+    &.Column5 {
+      & > div {
+        width: 40%;
+      }
+    }
+    &.Column6 {
+      & > div {
+        width: 32%;
+      }
+    }
+    &.Column7 {
+      & > div {
+        width: 28%;
+      }
+    }
+    &.Column8 {
+      & > div {
+        width: 25%;
+      }
+    }
+    &.Column9 {
+      & > div {
+        width: 22%;
+      }
+    }
+    &.Column10 {
+      & > div {
+        width: 20%;
+      }
+    }
+    &.Column11 {
+      & > div {
+        width: 18%;
+      }
+    }
+    &.Column12 {
+      & > div {
+        width: 16%;
+      }
+    }
+  }
+}

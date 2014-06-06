@@ -1,6 +1,34 @@
 # generator-typo3
 
-> [Yeoman](http://yeoman.io) generator
+> [Yeoman](http://yeoman.io) generator generator for TYPO3 6.x
+
+## Features
+
+* [Less](http://lesscss.org/) support (Optional)
+* [Sass](http://sass-lang.com/) support (Optional)
+* [Compass](http://compass-style.org/) support (Optional)
+* [jQuery](http://jquery.com/) Version 1 or 2
+
+
+## Frontend Software
+
+* [Buttons](http://alexwolfe.github.io/Buttons/)
+* [BrowserDetection.js](https://github.com/Milanowicz/BrowserDetection.js)
+* [CreateJS Framework](http://www.createjs.com/)
+* [Font Awesome](http://fortawesome.github.io/Font-Awesome/)
+* [FitText.js](https://github.com/Milanowicz/FitText.js)
+* [jQuery UserInterface Framework](http://jqueryui.com/)
+* [Masonry and Imagesloaded](http://masonry.desandro.com/)
+* [Modernizr](http://modernizr.com/)
+
+### Internet Explorer Polyfill libraries
+
+* [css3pie](http://css3pie.com/)
+* [selectivizr](http://selectivizr.com/)
+* [background-size-polyfill](http://louisremi.github.io/background-size-polyfill/)
+* [box-sizing-polyfill](https://github.com/Schepp/box-sizing-polyfill)
+* [respond](https://github.com/scottjehl/Respond)
+* [css3-mediaqueries-js](https://github.com/livingston/css3-mediaqueries-js)
 
 
 ## Getting Started

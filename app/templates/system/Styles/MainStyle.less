@@ -1,0 +1,544 @@
+// Load Website Style Definitions
+@import 'PageStyle';
+
+/**#######################################################################
+ *                     Elementary HTML Website Styles
+ * #######################################################################
+ */
+
+* {
+  .MarginPadding;
+  .BoxSizing;
+}
+
+html {
+  .BoxSize(100%);
+}
+
+body {
+  .Text(@FontText, @FontSizeNormalText, @ColorBlack, normal, @FontLineHeightNormalText, none, normal);
+  .BackgroundOpacity(@ColorBlack, 0.1);
+  font-size: 100%;
+}
+
+h1 {
+  .Text(@FontHead, 40, @ColorBlack, normal, 50, uppercase, bold);
+  .MarginPadding(0, 20px 0);
+}
+
+h2 {
+  .Text(@FontHead, 32, @ColorBlack, italic, 40, none, bold);
+  .MarginPadding(0, 15px 0);
+}
+
+h3 {
+  .Text(@FontHead, 24, @ColorBlack, normal, 38, none, bold);
+  .MarginPadding(0, 10px 0);
+}
+
+h4 {
+  .Text(@FontHead, 24, @ColorBlack, normal, 30, none, bold);
+  .MarginPadding(0, 5px 0);
+}
+
+h5 {
+  .Text(@FontHead, 20, @ColorBlack, normal, 24, none, bold);
+  .MarginPadding(0, 10px 0);
+}
+
+h6 {
+  .Text(@FontHead, 20, @ColorBlack, italic, 24, none, bold);
+  .MarginPadding(0, 10px 0 5px);
+}
+
+a {
+  .Text(@FontText, @FontSizeNormalText, @ColorLink, normal, @FontLineHeightNormalText, none, normal);
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+    color: @ColorLink;
+    .OutlineBorder;
+  }
+  &:active {
+    color: @ColorLink;
+    .OutlineBorder;
+  }
+  &:focus {
+    color: @ColorLink;
+    .OutlineBorder;
+  }
+  &:visited {
+    color: @ColorLink;
+    .OutlineBorder;
+  }
+}
+
+figure {
+  .MarginPadding;
+}
+
+img {
+  .OutlineBorder;
+}
+
+p {
+  .Text(@FontText, @FontSizeNormalText, @ColorBlack, normal, @FontLineHeightNormalText, none, normal);
+  .MarginPadding(5px 0);
+}
+
+pre {
+  .Text(@FontConsole, @FontSizeNormalText, @ColorBlack, normal, @FontLineHeightNormalText, none, normal);
+  text-align: left;
+  .MarginPadding(10px 0);
+  word-break: keep-all;
+}
+
+ul {
+  list-style: none;
+  .Text(@FontText, @FontSizeNormalText, @ColorBlack, normal, @FontLineHeightNormalText, none, normal);
+  .MarginPadding(5px 0 20px 15px);
+
+  li {
+    list-style: none;
+    .Text(@FontText, @FontSizeNormalText, @ColorBlack, normal, @FontLineHeightNormalText, none, normal);
+    .MarginPadding(5px 0 0 15px);
+
+    &:first-child {
+      .MarginPadding(10px 0 0 15px);
+    }
+  }
+}
+
+
+/**
+ * HTML Helper
+ */
+.clear {
+  clear: both;
+}
+
+
+/**
+ *  Column Grid View
+ */
+div {
+  &.Column1 {
+    display: inline-block;
+    & > div {
+      float: left;
+    }
+  }
+  &.Column2 {
+    display: inline-block;
+    & > div {
+      float: left;
+    }
+  }
+  &.Column3 {
+    display: inline-block;
+    & > div {
+      float: left;
+    }
+  }
+  &.Column4 {
+    display: inline-block;
+    & > div {
+      float: left;
+    }
+  }
+  &.Column5 {
+    display: inline-block;
+    & > div {
+      float: left;
+    }
+  }
+  &.Column6 {
+    display: inline-block;
+    & > div {
+      float: left;
+    }
+  }
+  &.Column7 {
+    display: inline-block;
+    & > div {
+      float: left;
+    }
+  }
+  &.Column8 {
+    display: inline-block;
+    & > div {
+      float: left;
+    }
+  }
+  &.Column9 {
+    display: inline-block;
+    & > div {
+      float: left;
+    }
+  }
+  &.Column10 {
+    display: inline-block;
+    & > div {
+      float: left;
+    }
+  }
+  &.Column11 {
+    display: inline-block;
+    & > div {
+      float: left;
+    }
+  }
+  &.Column12 {
+    display: inline-block;
+    & > div {
+      float: left;
+    }
+  }
+}
+
+
+/**#######################################################################
+ *                          Main Website Layout 
+ * #######################################################################
+ */
+
+header.Page {
+  display: inline-block;
+  .BoxSize(100%, auto);<% if (includeExample) { %>
+  .MarginPadding(0 auto);
+  .BackgroundOpacity(@ColorBlack, 0.2);
+  text-align: center;
+
+  figure {
+    .MarginPadding(0 auto);
+
+    img {
+      &.Html {
+        float: left;
+        .BoxSize(auto, 80px);
+        .MarginPadding(10px 0 0 0);
+      }
+    }
+
+    h1 {
+      float: left;
+      .MarginPadding(30px 0 0 0);
+    }
+
+    h2 {
+      .MarginPadding(0, 0 0 10px 0);
+    }
+  }<% } %>
+}
+
+
+main {
+  display: inline-block;
+  .BoxSize(100%, auto);<% if (includeExample) { %>
+  .MarginPadding(0, 0 0 50px 0);
+  .BackgroundOpacity(#ccc, 0.5);
+
+  canvas {
+    .BoxSize(100%, auto);
+  }
+
+  .Wrapper {
+    .MarginPadding(0 auto, 40px 0 0 0);
+
+    section {
+      .BoxSize(500px, auto);
+      .MarginPadding(0 0 20px 0);
+      .BoxSizing;
+
+      &.Full {
+        .BoxSize(100%, auto);
+      }
+
+      a {
+        word-break: break-all;
+      }
+
+      p {
+        text-align: justify;
+      }
+
+
+      article {
+        .BoxSizing;
+
+        background-color: #f5f5f5;
+        .BoxRounded(20px);
+        .MarginPadding(0, 20px);
+
+        &.Description {
+          background-color: dimgray;
+          .BoxRounded(20px);
+          .MarginPadding(0, 20px);
+
+          p {
+            color: #EEEEEE;
+          }
+
+          a {
+            color: @ColorBlack;
+          }
+        }
+
+        &.Usage {
+          background-color: darkgoldenrod;
+          .BoxRounded(20px);
+          .MarginPadding(0, 20px);
+
+          pre {
+            color: @ColorWhite;
+          }
+        }
+
+        &.Info {
+          background-color: orange;
+          .BoxRounded(20px);
+          .MarginPadding(0, 20px);
+        }
+
+        img {
+          .BoxSize(100%, auto);
+        }
+      }
+
+      figure {
+        .MarginPadding(10px 0);
+        text-align: center;
+
+        img {
+          .BoxSize(30%, auto);
+          .Animation(KenBurnsEffect 5s ease infinite);
+          .AnimationDirection(alternate-reverse);
+        }
+
+        .Keyframes(KenBurnsEffect, @KenBurnsAnimation);
+        @KenBurnsAnimation: {
+        from {
+        .Scale(1.0);
+      }
+      to {
+        .Scale(1.1);
+      }
+    };
+
+
+    figcaption {
+      .MarginPadding(0, 10px 0);
+      text-align: justify;
+    }
+  }
+
+  ul {
+    width: 100%;
+    list-style: none;
+
+    li {
+      list-style: none;
+    }
+
+    &.List {
+      list-style: square;
+
+      li {
+        list-style: square;
+        float: none;
+      }
+    }
+
+  }
+}
+}<% } %>
+}
+
+
+footer.Page {
+  display: inline-block;
+  .BoxSize(100%, auto);<% if (includeExample) { %>
+  .MarginPadding(0, 10px 0 5px 0);
+  .BackgroundOpacity(@ColorBlack, 0.35);
+
+  p {
+    .Text(@FontConsole, 18, @ColorBlack, normal, 20, none, 600);
+    float: right;
+    .MarginPadding(0, 0 20px 0 0);
+    text-align: justify;
+  }<% } %>
+}
+
+
+/**#######################################################################
+ *                      Media Queries for Responsive
+ * #######################################################################
+ */
+
+<% if (includeExample) { %>
+@media all and (max-width: 450px) {
+  main {
+    .Wrapper {
+      width: 100% !important;
+
+      section {
+        .BoxSize(100%, auto);
+
+        figure {
+          figcaption {
+            .MarginPadding(0, 10px);
+          }
+        }
+
+        ul {
+          .BoxSize(100%, auto);
+          .MarginPadding(0, 5px 15px 10px 15px);
+          .BoxSizing();
+
+          li {
+            .MarginPadding(0 0 0 15px);
+
+            ul {
+              .MarginPadding(5px 0 10px 5px);
+
+            }
+          }
+        }
+      }
+    }
+  }
+}<% } %>
+
+         // OVER Main Content Width
+@media all and (min-width: @MainContentWidth) {
+  div {
+    &.Column1 {
+      & > div {
+        width: 100%;
+      }
+    }
+    &.Column2 {
+      & > div {
+        width: 50%;
+      }
+    }
+    &.Column3 {
+      & > div {
+        width: 33%;
+      }
+    }
+    &.Column4 {
+      & > div {
+        width: 25%;
+      }
+    }
+    &.Column5 {
+      & > div {
+        width: 20%;
+      }
+    }
+    &.Column6 {
+      & > div {
+        width: 16.666666666666%;
+      }
+    }
+    &.Column7 {
+      & > div {
+        width: 14.285714285714%;
+      }
+    }
+    &.Column8 {
+      & > div {
+        width: 12.5%;
+      }
+    }
+    &.Column9 {
+      & > div {
+        width: 11.1111111111111%;
+      }
+    }
+    &.Column10 {
+      & > div {
+        width: 10%;
+      }
+    }
+    &.Column11 {
+      & > div {
+        width: 9.09090909090909%;
+      }
+    }
+    &.Column12 {
+      & > div {
+        width: 8.33333333333333%;
+      }
+    }
+  }
+}
+
+
+// UNDER Main Content Width
+@media all and (max-width: @MainContentWidth) {
+  div {
+    &.Column1 {
+      & > div {
+        width: 100%;
+      }
+    }
+    &.Column2 {
+      & > div {
+        width: 100%;
+      }
+    }
+    &.Column3 {
+      & > div {
+        width: 50%;
+      }
+    }
+    &.Column4 {
+      & > div {
+        width: 50%;
+      }
+    }
+    &.Column5 {
+      & > div {
+        width: 40%;
+      }
+    }
+    &.Column6 {
+      & > div {
+        width: 32%;
+      }
+    }
+    &.Column7 {
+      & > div {
+        width: 28%;
+      }
+    }
+    &.Column8 {
+      & > div {
+        width: 25%;
+      }
+    }
+    &.Column9 {
+      & > div {
+        width: 22%;
+      }
+    }
+    &.Column10 {
+      & > div {
+        width: 20%;
+      }
+    }
+    &.Column11 {
+      & > div {
+        width: 18%;
+      }
+    }
+    &.Column12 {
+      & > div {
+        width: 16%;
+      }
+    }
+  }
+}

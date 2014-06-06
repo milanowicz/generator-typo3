@@ -7,25 +7,25 @@
     "createjs-soundjs": "*",
     "easeljs": "*",<% } if (includePolyfill) { %>
     "css3pie": "*",
-    "selectivizr": "*",
-    "background-size-polyfill": "*",
+    "selectivizr": "~1.0",
+    "background-size-polyfill": "~0.2",
     "box-sizing-polyfill": "*",
-    "respond": "*",
+    "respond": "~1.4",
     "css3-mediaqueries-js": "*",<% } if (jQueryVersion == 'One') { %>
     "jquery": "~1.11",<% } if (jQueryVersion == 'Two') { %>
     "jquery": "~2.1",<% } if (includeJqueryUi) { %>
-    "jqueryui": "*",
-    "jqueryui-touch-punch": "*",<% } if (includeJqueryPlugins) { %>
-    "jquery-backstretch": "*",
-    "Buttons": "*",<% } if (includeExample) { %>
-    "FitText.js": "git://github.com/Milanowicz/FitText.js.git",
-    "BrowserDetection.js": "git://github.com/Milanowicz/BrowserDetection.js.git",<% } if (includeMasonry) { %>
-    "masonry": "*",
-    "imagesloaded": "*",<% } if (includeModernizr) { %>
-    "modernizr": "*",<% } %>
-    "font-awesome": "~4.0.3",
-    "CSSLessCollection": "git://github.com/Milanowicz/CSSLessCollection.git",
-    "normalize-css": "*"
+    "jqueryui": "~1.10",
+    "jqueryui-touch-punch": "*",<% } if (includeButtons) { %>
+    "Buttons": "*"<% } if (includeFitText) { %>
+    "RWD-FitText.js": "*",<% } if (includeBrowserDetection) { %>
+    "BrowserDetection.js": "*",<% } if (includeMasonry) { %>
+    "masonry": "~3.1",
+    "imagesloaded": "~3.1",<% } if (includeModernizr) { %>
+    "modernizr": "~2.8",<% } if (includeFontAwesome) { %>
+    "font-awesome": "~4.0",<% } if (supportLess) { %>
+    "CSSLessCollection": "*",<% } if (supportSass) { %>
+    "CSSSassCollection": "*",<% } %>
+    "normalize-css": "~3.0"
   }
 }
 

@@ -1,7 +1,7 @@
 {
   "name": "generator-typo3",
   "version": "0.0.1",
-  "description": "Yeoman generator for TYPO3 6.2",
+  "description": "Yeoman generator for TYPO3 6.x",
   "keywords": [
     "yeoman-generator",
     "typo3",
@@ -17,7 +17,7 @@
   "main": "app/index.js",
   "repository": {
     "type": "git",
-	"url": "git://github.com/Milanowicz/generator-typo3.git",
+	"url": "git://github.com/Milanowicz/generator-typo3.git"
   },
   "engines": {
     "node": ">=0.10.0"

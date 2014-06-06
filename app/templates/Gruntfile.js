@@ -76,20 +76,19 @@ module.exports = function(grunt) {
             },
             main : {
                 src : [
-                    'bower_components/jquery/dist/jquery.js',<% if (includeJqueryUi) { %>
-                    'bower_components/jQueryui/ui/jquery-ui.js',
-                    'bower_components/jqueryui-touch-punch/jquery.ui.touch-punch.js ',<% } if (includeJqueryPlugins) { %>
-                    'bower_components/jquery-backstretch/jquery.backstretch.js',
-                    'bower_components/Buttons/js/buttons.js',<% } if (includeExample) { %>
-                    'bower_components/FitText.js/jquery.fittext.js',
-                    'bower_components/BrowserDetection.js/BrowserDetection.js',<% } if (includeMasonry) { %>
-                    'bower_components/masonry/dist/masonry.pkgd.js',
-                    'bower_components/imagesloaded/imagesloaded.pkgd.js',<% } if (includePolyfill) { %>
-                    'bower_components/respond/dest/respond.src.js',<% } if (includeCreate) { %>
-                    'bower_components/easeljs/lib/easeljs-0.7.1.combined.js',
-                    'bower_components/createjs-tweenjs/lib/tweenjs-0.5.1.combined.js',
-                    'bower_components/createjs-preloadjs/lib/preloadjs-0.4.1.combined.js',
-                    'bower_components/createjs-soundjs/lib/soundjs-0.5.2.combined.js',<% } if (includeExample) { %>
+                    '<%= bowerDirectory %>/jquery/dist/jquery.js',<% if (includeJqueryUi) { %>
+                    '<%= bowerDirectory %>/jQueryui/ui/jquery-ui.js',
+                    '<%= bowerDirectory %>/jqueryui-touch-punch/jquery.ui.touch-punch.js ',<% } if (includeButtons) { %>
+                    '<%= bowerDirectory %>/Buttons/js/buttons.js',<% } if (includeFitText) { %>
+                    '<%= bowerDirectory %>/RWD-FitText.js/jquery.fittext.js',<% } if (includeBrowserDetection) { %>
+                    '<%= bowerDirectory %>/BrowserDetection.js/BrowserDetection.js',<% } if (includeMasonry) { %>
+                    '<%= bowerDirectory %>/masonry/dist/masonry.pkgd.js',
+                    '<%= bowerDirectory %>/imagesloaded/imagesloaded.pkgd.js',<% } if (includePolyfill) { %>
+                    '<%= bowerDirectory %>/respond/dest/respond.src.js',<% } if (includeCreate) { %>
+                    '<%= bowerDirectory %>/easeljs/lib/easeljs-0.7.1.combined.js',
+                    '<%= bowerDirectory %>/createjs-tweenjs/lib/tweenjs-0.5.1.combined.js',
+                    '<%= bowerDirectory %>/createjs-preloadjs/lib/preloadjs-0.4.1.combined.js',
+                    '<%= bowerDirectory %>/createjs-soundjs/lib/soundjs-0.5.2.combined.js',<% } if (includeExample) { %>
                     'typo3/system/<%= websiteProject %>/Resources/Private/JavaScript/Main.js',
                     'typo3/system/_shared/Resources/Private/JavaScript/MainTools.js',<% } %>
                     'typo3/system/_shared/Resources/Private/JavaScript/Typo3.js'
@@ -103,15 +102,15 @@ module.exports = function(grunt) {
                 files : [<% if (includeModernizr) { %>
                     {
                         expand: true,
-                        cwd: 'bower_components/modernizr/modernizr.js',
+                        cwd: '<%= bowerDirectory %>/modernizr/modernizr.js',
                         src : 'modernizr.js',
                         dest : 'typo3/system/_shared/Resources/Public/JS/'
-                    },<% } %>{
+                    }<% } if (includeFontAwesome && includeModernizr) { %>,<% } if (includeFontAwesome) { %>{
                         expand: true,
-                        cwd: 'bower_components/font-awesome/fonts/',
+                        cwd: '<%= bowerDirectory %>/font-awesome/fonts/',
                         src : '*',
                         dest : 'typo3/system/_shared/Resources/Public/Fonts/'
-                    }
+                    }<% } %>
                 ]
             },
             dist : {
@@ -119,43 +118,42 @@ module.exports = function(grunt) {
                     <% if (includePolyfill) { %>
                     {
                         expand: true,
-                        cwd: 'bower_components/selectivizr/',
+                        cwd: '<%= bowerDirectory %>/selectivizr/',
                         src : 'selectivizr.js',
                         dest : 'typo3/system/_shared/Resources/Public/JS/'
                     },{
                         expand: true,
-                        cwd: 'bower_components/css3pie/',
+                        cwd: '<%= bowerDirectory %>/css3pie/',
                         src : 'PIE.js',
                         dest : 'typo3/system/_shared/Resources/Public/JS/'
                     },{
                         expand: true,
-                        cwd: 'bower_components/css3pie/',
+                        cwd: '<%= bowerDirectory %>/css3pie/',
                         src : 'PIE.htc',
                         dest : 'typo3/system/_shared/Resources/Public/JS/'
                     },{
                         expand: true,
-                        cwd: 'bower_components/background-size-polyfill/',
+                        cwd: '<%= bowerDirectory %>/background-size-polyfill/',
                         src : 'backgroundsize.min.htc',
                         dest : 'typo3/system/_shared/Resources/Public/JS/'
                     },{
                         expand: true,
-                        cwd: 'bower_components/box-sizing-polyfill/',
+                        cwd: '<%= bowerDirectory %>/box-sizing-polyfill/',
                         src : 'boxsizing.htc',
                         dest : 'typo3/system/_shared/Resources/Public/JS/'
                     },
                     <% } if (includeModernizr) { %>
                     {
                         expand: true,
-                        cwd: 'bower_components/modernizr/',
+                        cwd: '<%= bowerDirectory %>/modernizr/',
                         src : 'modernizr.js',
                         dest : 'typo3/system/_shared/Resources/Public/JS/'
-                    },<% } %>{
+                    }<% } if (includeFontAwesome && includeModernizr) { %>,<% } if (includeFontAwesome) { %>{
                         expand: true,
-                        cwd: 'bower_components/font-awesome/fonts/',
+                        cwd: '<%= bowerDirectory %>/font-awesome/fonts/',
                         src : '*',
                         dest : 'typo3/system/_shared/Resources/Public/Fonts/'
-                    }
-
+                    }<% } %>
                 ]
             }
         },
@@ -211,7 +209,7 @@ module.exports = function(grunt) {
                     'typo3/system/_shared/Resources/Private/JavaScript/**/*'
                 ]
             }
-        },
+        },<% if (supportLess) { %>
 
         less: {
             options: {
@@ -225,7 +223,7 @@ module.exports = function(grunt) {
                     'typo3/system/<%= websiteProject %>/Resources/Public/CSS/Style.css': 'typo3/system/<%= websiteProject %>/Resources/Private/Less/PageStyle.less'
                 }
             }
-        },
+        },<% } %>
 
         markdown: {
             all: {
@@ -316,7 +314,7 @@ module.exports = function(grunt) {
             options: {
                 args: ['--verbose', '--compress'],
                 exclude: [
-                    '.git*', 'node_modules', 'bower_components', 'vendor',
+                    '.git*', 'node_modules', '<%= bowerDirectory %>', 'vendor',
                     '*.mov', '*.mp4', '*.mp3', '*.ogg', '*.ogv', '*.webm',
                     '*.zip', '*.tar', '*.bz2', '*.gz', '*.log'
                 ],
@@ -353,7 +351,33 @@ module.exports = function(grunt) {
                     syncDestIgnoreExcl: true
                 }
             }
+        },<% if (supportSass) { %>
+
+        sass_imports: {
+            options: {
+                inlineCSS: true
+            },
+            main : {
+                src: [
+                    '<%= bowerDirectory %>/normalize-css/normalize.css'<% if (includeFontAwesome) { %>,
+                    '<%= bowerDirectory %>/font-awesome/css/font-awesome.css'<% } if (includeJqueryUi) { %>,
+                    '<%= bowerDirectory %>/jQueryui/themes/base/jquery-ui.css'<% } if (includeButtons) { %>,
+                    '<%= bowerDirectory %>/Buttons/css/buttons.css'<% } %>
+                ],
+                dest: 'typo3/system/<%= websiteProject %>/Resources/Private/Sass/ImportLibrary.scss'
+            }
         },
+
+        sass : {
+            options : {
+                style: 'expanded'
+            },
+            main : {
+                files: {
+                    'typo3/system/<%= websiteProject %>/Resources/Public/CSS/Style.css': '<%= projectDirectory %>/Sass/PageStyle.scss'
+                }
+            }
+        },<% } %>
 
         uglify : {
             options : {
@@ -361,7 +385,7 @@ module.exports = function(grunt) {
                 report : 'min'
             },<% if (includeModernizr) { %>
             Modernizr : {
-                src : 'bower_components/modernizr/modernizr.js',
+                src : '<%= bowerDirectory %>/modernizr/modernizr.js',
                 dest : 'typo3/system/<%= websiteProject %>/Resources/Public/JS/modernizr.min.js'
             },<% } %>
             main : {

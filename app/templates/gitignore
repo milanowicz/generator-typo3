@@ -20,18 +20,20 @@ Thumbs.db
 *.gz
 composer.lock
 composer.phar
+.htaccess
+.htpasswd
 LocalDevelopment.ts
 LocalDevelopment.php
 local.json
 local.sh
 
 /doc/JavaScript/
-
+<% if (supportSass) { %>.sass-cache<% } %>
 <%= bowerDirectory %>
-/node_modules
+node_modules/
+npm-debug.log
 
 /typo3/index.php
-/typo3/.htaccess
 
 /typo3/fileadmin/_temp_/
 /typo3/fileadmin/_processed_/

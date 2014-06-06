@@ -1,0 +1,35 @@
+/**
+ *    Website Style Definitions
+ */
+
+//    Content Definitions
+@MainContentWidth: 1024px;
+@ResponsoveWidthBegin: 1040px;
+
+
+//    Font Types
+@FontHead: Arial, Verdana;
+@FontText: Arial, Verdana;
+@FontConsole: Courier New, Courier;
+
+@FontSizeNormalText: 18;
+@FontLineHeightNormalText: 22;
+
+
+//    Import Styles from Plug-Ins
+@import (inline) '/bower_components/normalize-css/normalize.css';<% if (includeFontAwesome) { %>
+@import (inline) '/bower_components/font-awesome/css/font-awesome.css';<% } if (includeJqueryUi) { %>
+@import (inline) '/bower_components/jQueryui/themes/base/jquery-ui.css';<% } if (includeButtons) { %>
+@import (inline) '/bower_components/Buttons/css/buttons.css';<% } %>
+
+
+//    Load Less Tookit Mixins
+@import '/bower_components/CSSLessCollection/CSSLessCollectionDefinitions';<% if (includePolyfill) { %>
+@MSPIE: '/system/_shared/Resources/Public/JS/PIE.min.htc';
+@MSBackgroundStretch: '/system/_shared/Resources/Public/JS/backgroundsize.min.htc';
+@MSBoxSizing: '/system/_shared/Resources/Public/JS/boxsizing.htc';<% } %>
+@import '/bower_components/CSSLessCollection/CSSLessCollectionMixins';
+
+
+//    Load Page Style files
+@import 'MainStyle';

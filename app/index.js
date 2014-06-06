@@ -94,8 +94,25 @@ var Typo3Generator = yeoman.generators.Base.extend({
                 name: 'Yes install it.',
                 value: 'Yes'
             },{
-                name: 'No install it!',
+                name: 'Doen\'t install it!',
                 value: 'No'
+            }]
+        },{
+            type: 'checkbox',
+            name: 'cssLang',
+            message: 'Which CSS extension language should be GruntJS supported?',
+            choices: [{
+                name: 'LESS - http://lesscss.org/',
+                value: 'less',
+                checked: true
+            },{
+                name: 'SASS - http://sass-lang.com/',
+                value: 'sass',
+                checked: false
+            },{
+                name: 'Compass - http://compass-style.org/',
+                value: 'compass',
+                checked: false
             }]
         },{
             type: 'list',
@@ -113,31 +130,43 @@ var Typo3Generator = yeoman.generators.Base.extend({
             name: 'features',
             message: 'What Software would you like to have for your new project?',
             choices: [{
-                name: 'CreateJS Framework',
+                name: 'Buttons - http://alexwolfe.github.io/Buttons/',
+                value: 'includeButtons',
+                checked: false
+            },{
+                name: 'BrowserDetection.js - https://github.com/Milanowicz/BrowserDetection.js',
+                value: 'includeBrowserDetection',
+                checked: true
+            },{
+                name: 'CreateJS Framework - http://www.createjs.com/',
                 value: 'includeCreate',
                 checked: false
             },{
+                name: 'Font Awesome - http://fortawesome.github.io/Font-Awesome/',
+                value: 'includeFontAwesome',
+                checked: false
+            },{
+                name: 'FitText.js - https://github.com/Milanowicz/FitText.js',
+                value: 'includeFitText',
+                checked: true
+            },{
                 name: 'Include Project description, example libraries, files and pictures',
                 value: 'includeExample',
-                checked: true
+                checked: false
             },{
                 name: 'Internet Explorer Polyfill libraries',
                 value: 'includePolyfill',
-                checked: false
+                checked: true
             },{
-                name: 'jQuery Plug-Ins - Backstretch and Buttons',
-                value: 'includeJqueryPlugins',
-                checked: false
-            },{
-                name: 'jQuery UserInterface Framework',
+                name: 'jQuery UserInterface Framework - http://jqueryui.com/',
                 value: 'includeJqueryUi',
                 checked: false
             },{
-                name: 'Masonry and Imagesloaded Plug-In',
+                name: 'Masonry and Imagesloaded Plug-In - http://masonry.desandro.com/',
                 value: 'includeMasonry',
-                checked: true
+                checked: false
             },{
-                name: 'Modernizr',
+                name: 'Modernizr - http://modernizr.com/',
                 value: 'includeModernizr',
                 checked: true
             }]
@@ -180,17 +209,26 @@ var Typo3Generator = yeoman.generators.Base.extend({
         this.prompt(prompts, function (answers) {
 
             var features = answers.features;
+            var cssLang     = answers.cssLang;
             var today = new Date();
 
             function hasFeature (feat) {
                 return features.indexOf(feat) !== -1;
+            }
+            function hasLang (lang) {
+                return cssLang.indexOf(lang) !== -1;
             }
 
             this.websiteName            = answers.websiteName;
             this.websiteDirectory       = this._.slugify(answers.websiteDirectory);
             this.websiteDescription     = answers.websiteDescription;
             this.websiteProject         = this._.slugify(answers.websiteProject);
-            this.bowerDirectory         = this._.slugify(answers.bowerDirectory);
+
+            if (answers.bowerDirectory === 'bower_components') {
+                this.bowerDirectory     = 'bower_components';
+            } else {
+                this.bowerDirectory     = this._.slugify(answers.bowerDirectory);
+            }
 
             this.DbUsername             = answers.DbUsername;
             this.DbPasswort             = answers.DbPasswort;
@@ -199,16 +237,22 @@ var Typo3Generator = yeoman.generators.Base.extend({
 
             this.AdaptiveImages         = answers.AdaptiveImages;
             this.jQueryVersion          = answers.jQueryVersion;
+            this.gruntTask              = answers.gruntTask;
 
+            this.includeButtons         = hasFeature('includeButtons');
+            this.includeBrowserDetection= hasFeature('includeBrowserDetection');
+            this.includeCreate          = hasFeature('includeCreate');
             this.includeExample         = hasFeature('includeExample');
+            this.includeFontAwesome     = hasFeature('includeFontAwesome');
+            this.includeFitText         = hasFeature('includeFitText');
             this.includeJqueryUi        = hasFeature('includeJqueryUi');
-            this.includeJqueryPlugins   = hasFeature('includeJqueryPlugins');
             this.includeMasonry         = hasFeature('includeMasonry');
             this.includeModernizr       = hasFeature('includeModernizr');
-            this.includeCreate          = hasFeature('includeCreate');
             this.includePolyfill        = hasFeature('includePolyfill');
 
-            this.gruntTask              = answers.gruntTask;
+            this.supportLess            = hasLang('less');
+            this.supportSass            = hasLang('sass');
+            this.supportCompass         = hasLang('compass');
 
             this.year                   = today.getFullYear();
 
@@ -224,12 +268,12 @@ var Typo3Generator = yeoman.generators.Base.extend({
         this.template('_bowerrc',       '.bowerrc');
         this.template('_composer.json', 'typo3/composer.json');
         this.template('_package.json',  'package.json');
+        this.template('gitignore',      '.gitignore');
         this.template('Gruntfile.js',   'Gruntfile.js');
         this.template('local.sh',       'local.sh');
         this.template('README.md',      'README.md');
         this.copy('composer.phar',      'typo3/composer.phar');
         this.copy('editorconfig',       '.editorconfig');
-        this.copy('gitignore',          '.gitignore');
         this.copy('local.json',         'local.json');
 
 
@@ -281,6 +325,17 @@ var Typo3Generator = yeoman.generators.Base.extend({
         this.template('system/Project/Configuration/TypoScript/Setup/Page.ts', 'typo3/system/' + this.websiteProject + '/Configuration/TypoScript/Setup/Page.ts');
         this.copy('system/README.md', 'typo3/system/README.md');
         this.copy('jshintrc', 'typo3/system/_shared/Resources/Private/JavaScript/.jshintrc');
+
+        if (this.supportLess) {
+            this.mkdir('typo3/system/' + this.websiteProject + '/Resources/Private/Less');
+            this.template('Styles/PageStyle.less', this.projectDirectory + '/Resources/Private/Less/PageStyle.less');
+            this.template('Styles/MainStyle.less', this.projectDirectory + '/Resources/Private/Less/MainStyle.less');
+        }
+        if (this.supportSass) {
+            this.mkdir('typo3/system/' + this.websiteProject + '/Resources/Private/Sass');
+            this.template('Styles/PageStyle.scss', this.projectDirectory + '/Resources/Private/Sass/PageStyle.scss');
+            this.template('Styles/MainStyle.scss', this.projectDirectory + '/Resources/Private/Sass/MainStyle.scss');
+        }
 
         this.mkdir('typo3/system/_shared/Configuration/');
         this.mkdir('typo3/system/_shared/Configuration/TypoScript');
