@@ -88,7 +88,7 @@ var Typo3Generator = yeoman.generators.Base.extend({
             default: 'bower_components'
         },{
             type: 'list',
-            name: 'AdaptiveImages',
+            name: 'AdaptiveImages - http://adaptive-images.com/',
             message: 'Should Adaptive Images for Responsive Images be install?',
             choices: [{
                 name: 'Yes install it.',
@@ -186,10 +186,19 @@ var Typo3Generator = yeoman.generators.Base.extend({
             message: 'What is Passwort for your local database?',
             default: '127.0.0.1'
         },{
-            type: 'input',
+            type: 'list',
             name: 'DbPath',
             message: 'Where is your MySQL bin path?',
-            default: '/usr/local/bin'
+            choices: [{
+                name: 'Mac OS X MySQL Binary Path: /Application/xampp/mysql/bin/',
+                value: '/Application/xampp/mysql/bin/'
+            },{
+                name: 'Linux MySQL Binary Path: /usr/local/bin/',
+                value: '/usr/local/bin/'
+            },{
+                name: 'Windows MySQL Binary Path: C:/xampp/mysql/bin/',
+                value: 'C:/xampp/mysql/bin/'
+            }]
         },{
             type: 'list',
             name: 'gruntTask',
@@ -328,13 +337,13 @@ var Typo3Generator = yeoman.generators.Base.extend({
 
         if (this.supportLess) {
             this.mkdir('typo3/system/' + this.websiteProject + '/Resources/Private/Less');
-            this.template('Styles/PageStyle.less', this.projectDirectory + '/Resources/Private/Less/PageStyle.less');
-            this.template('Styles/MainStyle.less', this.projectDirectory + '/Resources/Private/Less/MainStyle.less');
+            this.template('system/Styles/PageStyle.less', 'typo3/system/' + this.websiteProject + '/Resources/Private/Less/PageStyle.less');
+            this.template('system/Styles/MainStyle.less', 'typo3/system/' + this.websiteProject + '/Resources/Private/Less/MainStyle.less');
         }
         if (this.supportSass) {
             this.mkdir('typo3/system/' + this.websiteProject + '/Resources/Private/Sass');
-            this.template('Styles/PageStyle.scss', this.projectDirectory + '/Resources/Private/Sass/PageStyle.scss');
-            this.template('Styles/MainStyle.scss', this.projectDirectory + '/Resources/Private/Sass/MainStyle.scss');
+            this.template('system/Styles/PageStyle.scss', 'typo3/system/' + this.websiteProject + '/Resources/Private/Sass/PageStyle.scss');
+            this.template('system/Styles/MainStyle.scss', 'typo3/system/' + this.websiteProject + '/Resources/Private/Sass/MainStyle.scss');
         }
 
         this.mkdir('typo3/system/_shared/Configuration/');

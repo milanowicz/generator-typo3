@@ -7,6 +7,7 @@
 * [Less](http://lesscss.org/) support (Optional)
 * [Sass](http://sass-lang.com/) support (Optional)
 * [Compass](http://compass-style.org/) support (Optional)
+* [AdaptiveImages](http://adaptive-images.com/) support (Optional)
 * [jQuery](http://jquery.com/) Version 1 or 2
 
 
