@@ -102,7 +102,7 @@ module.exports = function(grunt) {
                 files : [<% if (includeModernizr) { %>
                     {
                         expand: true,
-                        cwd: '<%= bowerDirectory %>/modernizr/modernizr.js',
+                        cwd: '<%= bowerDirectory %>/modernizr/',
                         src : 'modernizr.js',
                         dest : 'typo3/system/_shared/Resources/Public/JS/'
                     }<% } if (includeFontAwesome && includeModernizr) { %>,<% } if (includeFontAwesome) { %>{
@@ -124,12 +124,10 @@ module.exports = function(grunt) {
                     },{
                         expand: true,
                         cwd: '<%= bowerDirectory %>/css3pie/',
-                        src : 'PIE.js',
-                        dest : 'typo3/system/_shared/Resources/Public/JS/'
-                    },{
-                        expand: true,
-                        cwd: '<%= bowerDirectory %>/css3pie/',
-                        src : 'PIE.htc',
+                        src : [
+                            'PIE.js',
+                            'PIE.htc'
+                        ],
                         dest : 'typo3/system/_shared/Resources/Public/JS/'
                     },{
                         expand: true,
@@ -386,7 +384,7 @@ module.exports = function(grunt) {
             },<% if (includeModernizr) { %>
             Modernizr : {
                 src : '<%= bowerDirectory %>/modernizr/modernizr.js',
-                dest : 'typo3/system/<%= websiteProject %>/Resources/Public/JS/modernizr.min.js'
+                dest : 'typo3/system/_shared/Resources/Public/JS/modernizr.min.js'
             },<% } %>
             main : {
                 src : 'typo3/system/<%= websiteProject %>/Resources/Public/JS/Script.js',

@@ -296,8 +296,8 @@ var Typo3Generator = yeoman.generators.Base.extend({
 
 
         this.copy('robots.txt',         'typo3/robots.txt');
-        this.copy('htaccess',           'typo3/_.htaccess');
-        this.copy('htaccess',           'typo3/.htaccess');
+        this.template('htaccess',       'typo3/_.htaccess');
+        this.template('htaccess',       'typo3/.htaccess');
 
         if (this.AdaptiveImages === 'Yes') {
             this.copy('AdaptiveImages.md',  'AdaptiveImages.md');

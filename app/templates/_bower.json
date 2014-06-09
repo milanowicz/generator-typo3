@@ -16,7 +16,7 @@
     "jquery": "~2.1",<% } if (includeJqueryUi) { %>
     "jqueryui": "~1.10",
     "jqueryui-touch-punch": "*",<% } if (includeButtons) { %>
-    "Buttons": "*"<% } if (includeFitText) { %>
+    "Buttons": "*",<% } if (includeFitText) { %>
     "RWD-FitText.js": "*",<% } if (includeBrowserDetection) { %>
     "BrowserDetection.js": "*",<% } if (includeMasonry) { %>
     "masonry": "~3.1",
