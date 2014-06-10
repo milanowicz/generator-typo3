@@ -71,6 +71,27 @@ Yeoman has a heart of gold. He's a person with feelings and opinions, but he's v
 If you'd like to get to know Yeoman better and meet some of his friends, [Grunt](http://gruntjs.com) and [Bower](http://bower.io), check out the complete [Getting Started Guide](https://github.com/yeoman/yeoman/wiki/Getting-Started).
 
 
+
+## Getting Developed
+
+
+Clone the generator-typo3 repository.
+
+```
+$ git clone git@github.com:Milanowicz/generator-typo3.git
+```
+
+That'll install your project dependencies and symlink a global module to your local file. After npm is done, you'll be able to call yo name and you should see the console.log defined earlier outputted in the terminal. Congratulation, you just built your first generator!
+
+```
+$ cd generator-typo3/
+```
+
+```
+$ npm link
+```
+
+
 ## License
 
 MIT
