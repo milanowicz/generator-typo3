@@ -4,21 +4,22 @@
 
 # Check if request over http or https
 [globalString = IENV:TYPO3_SSL=1]
-	Protocol 		= https
+	#protocol 		= https
 [else]
-	Protocol 		= http
+	#protocol 		= http
 [end]
 
 
 # Check if local Development
 [globalString = IENV:HTTP_HOST=*{$config.devURL}]
-	config.baseURL  = {$Protocol}://{$config.devURL}/
+	#hostname        = {$config.devURL}
 [globalString = IENV:HTTP_HOST=*{$config.stageUrl}]
-    config.baseURL  = {$Protocol}://{$config.stageUrl}/
+    #hostname        = {$config.stageUrl}
 [else]
-	config.baseURL  = {$Protocol}://{$config.wwwURL}/
+	#hostname        = {$config.wwwUrl}
 [end]
 
+#config.baseURL  = {$protocol}://{$Hostname.value}/
 
 config {
 

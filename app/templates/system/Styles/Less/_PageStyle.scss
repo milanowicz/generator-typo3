@@ -1,0 +1,24 @@
+//###########################################
+//##       Website Style Definitions       ##
+//###########################################
+
+// Content Definitions
+$MainContentWidth: 1024px;
+$ResponsoveWidthBegin: 1040px;
+
+
+// Font Types
+$FontHead: Arial, Verdana;
+$FontText: Arial, Verdana;
+$FontConsole: Courier New, Courier;
+
+$FontSizeNormalText: 18;
+$FontLineHeightNormalText: 22;
+
+
+//  Load Sass Tookit Mixins
+@import '/bower_components/CSSSassCollection/CSSSassCollectionDefinitions';<% if (includePolyfill) { %>
+$MSPIE: '/system/_shared/Resources/Public/JS/PIE.min.htc';
+$MSBackgroundStretch: '/system/_shared/Resources/Public/JS/backgroundsize.min.htc';
+$MSBoxSizing: '/system/_shared/Resources/Public/JS/boxsizing.htc';<% } %>
+@import '/bower_components/CSSSassCollection/CSSSassCollectionMixins';

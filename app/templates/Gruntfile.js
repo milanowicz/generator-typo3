@@ -88,9 +88,10 @@ module.exports = function(grunt) {
                     '<%= bowerDirectory %>/easeljs/lib/easeljs-0.7.1.combined.js',
                     '<%= bowerDirectory %>/createjs-tweenjs/lib/tweenjs-0.5.1.combined.js',
                     '<%= bowerDirectory %>/createjs-preloadjs/lib/preloadjs-0.4.1.combined.js',
-                    '<%= bowerDirectory %>/createjs-soundjs/lib/soundjs-0.5.2.combined.js',<% } if (includeExample) { %>
-                    'typo3/system/<%= websiteProject %>/Resources/Private/JavaScript/Main.js',
+                    '<%= bowerDirectory %>/createjs-soundjs/lib/soundjs-0.5.2.combined.js',
+                    'typo3/system/_shared/Resources/Private/JavaScript/Main.js',<% } if (includeExample) { %>
                     'typo3/system/_shared/Resources/Private/JavaScript/MainTools.js',<% } %>
+                    'typo3/system/<%= websiteProject %>/Resources/Private/JavaScript/<%= websiteProject %>.js',
                     'typo3/system/_shared/Resources/Private/JavaScript/Typo3.js'
                 ],
                 dest : 'typo3/system/<%= websiteProject %>/Resources/Public/JS/Script.js'
@@ -99,8 +100,7 @@ module.exports = function(grunt) {
 
         copy : {
             dev : {
-                files : [<% if (includeModernizr) { %>
-                    {
+                files : [<% if (includeModernizr) { %>{
                         expand: true,
                         cwd: '<%= bowerDirectory %>/modernizr/',
                         src : 'modernizr.js',
@@ -114,9 +114,7 @@ module.exports = function(grunt) {
                 ]
             },
             dist : {
-                files : [
-                    <% if (includePolyfill) { %>
-                    {
+                files : [<% if (includePolyfill) { %>{
                         expand: true,
                         cwd: '<%= bowerDirectory %>/selectivizr/',
                         src : 'selectivizr.js',
@@ -139,9 +137,7 @@ module.exports = function(grunt) {
                         cwd: '<%= bowerDirectory %>/box-sizing-polyfill/',
                         src : 'boxsizing.htc',
                         dest : 'typo3/system/_shared/Resources/Public/JS/'
-                    },
-                    <% } if (includeModernizr) { %>
-                    {
+                    },<% } if (includeModernizr) { %>{
                         expand: true,
                         cwd: '<%= bowerDirectory %>/modernizr/',
                         src : 'modernizr.js',
@@ -372,7 +368,7 @@ module.exports = function(grunt) {
             },
             main : {
                 files: {
-                    'typo3/system/<%= websiteProject %>/Resources/Public/CSS/Style.css': '<%= projectDirectory %>/Sass/PageStyle.scss'
+                    'typo3/system/<%= websiteProject %>/Resources/Public/CSS/Style.css': 'typo3/system/<%= websiteProject %>/Resources/Private/Sass/PageStyle.scss'
                 }
             }
         },<% } %>

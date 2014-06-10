@@ -104,7 +104,7 @@ At this point you can rename the Database Dump to the Project name and get ready
         # File DB Name at repo
         export DBNames="<%= _.slugify(websiteName) %>"
         # Real MySQL Databasename
-        export MySQLDB="DatabaseName"
+        export MySQLDB="<%= _.slugify(websiteName) %>"
         # run script
         bash $DBPath/SyncDB.sh $1
 
@@ -123,7 +123,7 @@ Apache Vhost Settings
         <VirtualHost *:80>
 
             DocumentRoot "/path/to/<%= _.slugify(websiteName) %>/typo3"
-            ServerName dummy.local
+            ServerName <%= _.slugify(websiteName) %>.localhost
 
             <Directory /path/to/typo3/<%= _.slugify(websiteName) %>/typo3>
                 DirectoryIndex index.php
@@ -135,8 +135,8 @@ Apache Vhost Settings
                 Require all granted
             </Directory>
 
-            ErrorLog "logs/t3fs-error_log"
-            CustomLog "logs/t3fs-access_log" common
+            ErrorLog "logs/<%= _.slugify(websiteName) %>-error.log"
+            CustomLog "logs/<%= _.slugify(websiteName) %>-access.log" common
 
         </VirtualHost>
 

@@ -26,6 +26,7 @@ tt_content {
   bullets.20.stdWrap.prefixComment >
   table.20.stdWrap.prefixComment >
   stdWrap.dataWrap >
+  stdWrap.innerWrap >
   stdWrap.prepend.dataWrap >
 }
 

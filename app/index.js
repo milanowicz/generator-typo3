@@ -323,33 +323,44 @@ var Typo3Generator = yeoman.generators.Base.extend({
 
         this.mkdir('typo3/system');
         this.mkdir('typo3/system/_shared');
-        this.mkdir('typo3/system/' + this.websiteProject);
         this.directory('system/_shared', 'typo3/system/_shared');
+
+        this.mkdir('typo3/system/' + this.websiteProject);
+        this.mkdir('typo3/system/' + this.websiteProject + '/Resources/Private/JavaScript');
+        this.mkdir('typo3/system/' + this.websiteProject + '/Resources/Public');
+        this.mkdir('typo3/system/' + this.websiteProject + '/Resources/Public/CSS');
+        this.mkdir('typo3/system/' + this.websiteProject + '/Resources/Public/Images');
+        this.mkdir('typo3/system/' + this.websiteProject + '/Resources/Public/JS');
         this.directory('system/Project', 'typo3/system/' + this.websiteProject);
         this.template('LocalDevelopment.ts', 'typo3/system/' + this.websiteProject + '/Configuration/TypoScript/Setup/LocalDevelopment.ts');
         this.template('system/Project/Configuration/TypoScript/Constants.ts', 'typo3/system/' + this.websiteProject + '/Configuration/TypoScript/Constants.ts');
         this.template('system/Project/Configuration/TypoScript/Setup.ts', 'typo3/system/' + this.websiteProject + '/Configuration/TypoScript/Setup.ts');
         this.template('system/Project/Configuration/TypoScript/Constants/Config.ts', 'typo3/system/' + this.websiteProject + '/Configuration/TypoScript/Constants/Config.ts');
         this.template('system/Project/Configuration/TypoScript/Constants/Page.ts', 'typo3/system/' + this.websiteProject + '/Configuration/TypoScript/Constants/Page.ts');
-        this.template('system/Project/Configuration/TypoScript/Setup/Page.ts', 'typo3/system/' + this.websiteProject + '/Configuration/TypoScript/Setup/Page.ts');
+        this.template('Scripts/Main.js', 'typo3/system/' + this.websiteProject + '/Resources/Private/JavaScript/' + this.websiteProject + '.js');
         this.copy('system/README.md', 'typo3/system/README.md');
-        this.copy('jshintrc', 'typo3/system/_shared/Resources/Private/JavaScript/.jshintrc');
 
         if (this.supportLess) {
+            this.mkdir('typo3/system/_shared/Resources/Private/Less');
             this.mkdir('typo3/system/' + this.websiteProject + '/Resources/Private/Less');
+            this.template('system/Styles/_PageStyle.less', 'typo3/system/_shared/Resources/Private/Less/PageStyle.less');
             this.template('system/Styles/PageStyle.less', 'typo3/system/' + this.websiteProject + '/Resources/Private/Less/PageStyle.less');
             this.template('system/Styles/MainStyle.less', 'typo3/system/' + this.websiteProject + '/Resources/Private/Less/MainStyle.less');
         }
         if (this.supportSass) {
+            this.mkdir('typo3/system/_shared/Resources/Private/Sass');
             this.mkdir('typo3/system/' + this.websiteProject + '/Resources/Private/Sass');
+            this.template('system/Styles/_PageStyle.scss', 'typo3/system/_shared/Resources/Private/Sass/PageStyle.scss');
             this.template('system/Styles/PageStyle.scss', 'typo3/system/' + this.websiteProject + '/Resources/Private/Sass/PageStyle.scss');
             this.template('system/Styles/MainStyle.scss', 'typo3/system/' + this.websiteProject + '/Resources/Private/Sass/MainStyle.scss');
         }
+
 
         this.mkdir('typo3/system/_shared/Configuration/');
         this.mkdir('typo3/system/_shared/Configuration/TypoScript');
         this.mkdir('typo3/system/_shared/Configuration/TypoScript/Setup');
         this.mkdir('typo3/system/_shared/Configuration/TypoScript/Constants');
+
         this.mkdir('typo3/system/_shared/Resources/Public');
         this.mkdir('typo3/system/_shared/Resources/Public/CSS');
         this.mkdir('typo3/system/_shared/Resources/Public/Favicon');
@@ -357,11 +368,15 @@ var Typo3Generator = yeoman.generators.Base.extend({
         this.mkdir('typo3/system/_shared/Resources/Public/Fonts');
         this.mkdir('typo3/system/_shared/Resources/Public/Images');
         this.mkdir('typo3/system/_shared/Resources/Public/JS');
-        this.mkdir('typo3/system/' + this.websiteProject + '/Resources/Public');
-        this.mkdir('typo3/system/' + this.websiteProject + '/Resources/Public/CSS');
-        this.mkdir('typo3/system/' + this.websiteProject + '/Resources/Public/Images');
-        this.mkdir('typo3/system/' + this.websiteProject + '/Resources/Public/JS');
+        this.mkdir('typo3/system/_shared/Resources/Private/JavaScript');
+        this.copy('system/Scripts/_Main.js' , 'typo3/system/_shared/Resources/Private/JavaScript/Main.js');
+        if (this.includeExample) {
+            this.copy('system/Scripts/_MainTools.js' , 'typo3/system/_shared/Resources/Private/JavaScript/MainTools.js');
+        }
+        this.copy('system/Scripts/_Typo3.js' , 'typo3/system/_shared/Resources/Private/JavaScript/Typo3.js');
+        this.copy('jshintrc', 'typo3/system/_shared/Resources/Private/JavaScript/.jshintrc');
 
+        this.template('system/_shared/Configuration/TypoScript/Setup/Page.ts', 'typo3/system/_shared/Configuration/TypoScript/Setup/Page.ts');
         this.template('_LocalDevelopment.ts', 'typo3/system/_shared/Configuration/TypoScript/Setup/LocalDevelopment.ts');
         this.copy('denyhtaccess', 'typo3/system/_shared/Configuration/.htaccess');
         this.copy('denyhtaccess', 'typo3/system/_shared/Resources/Private/.htaccess');
