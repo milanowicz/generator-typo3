@@ -1,12 +1,12 @@
 config {
 
     # Development
-    devURL         = <%= _.slugify(websiteName) %>.localhost
+    devURL          = <%= _.slugify(websiteName) %>.localhost
 
     # Stage Url
-    stageUrl    = stage.tld
+    stageURL        = stage.tld
 
     # Set TYPO3 Base URL
-    wwwURL         = online.tld
+    wwwURL          = online.tld
     
 }

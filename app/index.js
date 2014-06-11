@@ -385,7 +385,6 @@ Typo3Generator.prototype.app = function app () {
     this.template('system/_shared/Configuration/TypoScript/Setup/Page.ts', 'typo3/system/_shared/Configuration/TypoScript/Setup/Page.ts');
     this.template('_LocalDevelopment.ts', 'typo3/system/_shared/Configuration/TypoScript/Setup/LocalDevelopment.ts');
 
-    this.mkdir('typo3/system/_shared/Configuration/TypoScript/Constants');
     this.mkdir('typo3/system/_shared/Resources/Public');
     this.mkdir('typo3/system/_shared/Resources/Public/CSS');
     this.mkdir('typo3/system/_shared/Resources/Public/Favicon');

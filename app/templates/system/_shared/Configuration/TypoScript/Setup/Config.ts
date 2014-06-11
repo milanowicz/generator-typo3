@@ -1,25 +1,6 @@
-#################################
-##  Website Config TypoScript  ##
-#################################
-
-# Check if request over http or https
-[globalString = IENV:TYPO3_SSL=1]
-	#protocol 		= https
-[else]
-	#protocol 		= http
-[end]
-
-
-# Check if local Development
-[globalString = IENV:HTTP_HOST=*{$config.devURL}]
-	#hostname        = {$config.devURL}
-[globalString = IENV:HTTP_HOST=*{$config.stageUrl}]
-    #hostname        = {$config.stageUrl}
-[else]
-	#hostname        = {$config.wwwUrl}
-[end]
-
-#config.baseURL  = {$protocol}://{$Hostname.value}/
+##############################
+##  Main Config TypoScript  ##
+##############################
 
 config {
 
