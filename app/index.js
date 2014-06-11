@@ -63,7 +63,7 @@ util.inherits(Typo3Generator, yeoman.generators.Base);
 
 
 /**
- * User Prompt for the installation from the new Project
+ * User Prompt for the installation for the new Project
  */
 Typo3Generator.prototype.askFor = function askFor () {
 

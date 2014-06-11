@@ -24,12 +24,12 @@
 
 ### Internet Explorer Polyfill libraries
 
+* [css3-mediaqueries-js](https://github.com/livingston/css3-mediaqueries-js)
 * [css3pie](http://css3pie.com/)
-* [selectivizr](http://selectivizr.com/)
 * [background-size-polyfill](http://louisremi.github.io/background-size-polyfill/)
 * [box-sizing-polyfill](https://github.com/Schepp/box-sizing-polyfill)
 * [respond](https://github.com/scottjehl/Respond)
-* [css3-mediaqueries-js](https://github.com/livingston/css3-mediaqueries-js)
+* [selectivizr](http://selectivizr.com/)
 
 
 ## Getting Started
