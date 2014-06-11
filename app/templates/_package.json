@@ -4,25 +4,25 @@
   "version": "0.0.0",
   "dependencies": {},
   "devDependencies": {
-    "grunt": "^0.4.4",
+    "grunt": "^0.4.5",
     "grunt-bg-shell": "~2.3.1",
+    "grunt-contrib-clean": "~0.5.0",
     "grunt-contrib-concat": "~0.4.0",<% if (supportCompass) { %>
     "grunt-contrib-compass": "~0.8.0",<% } %>
-    "grunt-contrib-clean": "~0.5.0",
-    "grunt-contrib-copy": "~0.5.0",<% if (supportLess) { %>
-    "grunt-contrib-less": "^0.11.0",<% } %>
+    "grunt-contrib-copy": "^0.5.0",<% if (supportLess) { %>
+    "grunt-contrib-less": "^0.11.1",<% } %>
     "grunt-contrib-jshint": "~0.10.0",<% if (supportSass) { %>
     "grunt-contrib-sass": "~0.7.3",<% } %>
     "grunt-contrib-uglify": "^0.4.0",
     "grunt-contrib-watch": "^0.6.1",
     "grunt-devtools": "~0.2.1",
-    "grunt-dev-update": "^0.5.5",
+    "grunt-dev-update": "^0.5.8",
     "grunt-jsdoc": "^0.5.4",
-    "grunt-markdown": "~0.5.0",
+    "grunt-markdown": "^0.6.1",
     "grunt-notify": "^0.3.0",
     "grunt-recess": "^0.6.1",<% if (supportSass) { %>
     "grunt-scss-imports": "~0.0.2",<% } %>
-    "grunt-rsync": "~0.5.0",
+    "grunt-rsync": "^0.5.0",
     "load-grunt-tasks": "~0.4.0",
     "time-grunt": "~0.3.1",
     "jshint-stylish": "~0.2.0"
