@@ -1,4 +1,4 @@
-# Set default baseURL
+# Set default
 config.baseURL        = {$config.Protocol}://{$config.wwwURL}
 
 # Set local Development

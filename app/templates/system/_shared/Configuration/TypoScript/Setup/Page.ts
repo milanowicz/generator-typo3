@@ -30,12 +30,12 @@
         
         # HTML 5 Tag with special options
         config {
-            admPanel = 0
-            no_cache = 0
-            metaCharset = utf-8
-            additionalHeaders = Content-Type:text/html;charset=utf-8
+            admPanel            = 0
+            no_cache            = 0
+            metaCharset         = utf-8
+            additionalHeaders   = Content-Type:text/html;charset=utf-8
             htmlTag_stdWrap {
-                cObject  = TEXT
+                cObject         = TEXT
                 cObject.value (
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->

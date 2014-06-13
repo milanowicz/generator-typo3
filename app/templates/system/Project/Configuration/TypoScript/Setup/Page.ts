@@ -46,16 +46,16 @@
             file.cObject { 
             
                 key {
-                    data = levelfield: -1 , backend_layout_next_level, slide
-                    override.data = TTFSE:page|backend_layout
+                    field           = backend_layout
+                    data            = levelfield: -1 , backend_layout_next_level, slide
+                    override.data   = TTFSE:page|backend_layout
                 }
                 # Default fallback page
                 default = TEXT
                 default.value = {$page.FluidDefaultTemplate}
                 
                 # Default and main template
-                1 = TEXT            
-                1.value = {$page.FluidDefaultTemplate}
+                1 < .default
                 
                 # Footer Partial for all sites
                 2 = TEXT
