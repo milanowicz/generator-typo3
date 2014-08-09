@@ -20,38 +20,69 @@ var Typo3Generator = module.exports = function Typo3generator(args, options, con
                 skipInstall: this.options['skip-install'],
                 callback: function () {
                     if (this.gruntTask === 'gruntRelease') {
+
                         this.spawnCommand('grunt', ['build'])
                             .on('exit', function () {
+
                                 console.log('\n\n\t\tA new TYPO3 Project is served by Yeoman\n\n');
+
                             });
+
                     } else if (this.gruntTask === 'gruntBuild') {
+
                         this.spawnCommand('grunt', ['install'])
                             .on('exit', function () {
-                                console.log('\n\n\t\tA new TYPO3 Project is served by Yeoman\n\n');
-                                console.log('\tPassword: 123456');
-                                console.log('\thttp://' + this.websiteName + '.localhost/typo3/install/\n');
-                                console.log('\tUsername: admin');
-                                console.log('\tPassword: 12345678');
-                                console.log('\thttp://' + this.websiteName + '.localhost/typo3/\n\n');
-                                console.log('Example Apache Configuration:\n');
-                                console.log('<VirtualHost *:80>\n\n' +
-                                    '\tDocumentRoot "/path/to/' + this.websiteName + '/typo3"\n'+
-                                    '\tServerName ' + this.websiteName + '.local\n\n' +
-                                    '\t<Directory /path/to/' + this.websiteName + '/typo3>\n' +
-                                    '\t\tDirectoryIndex index.php\n' +
-                                    '\t\tOptions -Indexes +FollowSymLinks\n' +
-                                    '\t\tAllowOverride FileInfo Indexes\n' +
-                                    '\t\tOrder allow,deny\n' +
-                                    '\t\tallow from all\n' +
-                                    '\t\t# Only by local development\n' +
-                                    '\t\tRequire all granted\n' +
-                                    '\t</Directory>\n\n' +
-                                    '\tErrorLog "logs/' + this.websiteName + '-error_log"\n' +
-                                    '\tCustomLog "logs/' + this.websiteName + '-access_log" common\n' +
-                                    '</VirtualHost>\n');
+
+                                if (this.supportVagrant === 'Yes') {
+
+                                    this.spawnCommand('vagrant', ['up'])
+                                        .on('exit', function () {
+
+                                            console.log('\n\n\t\tA new TYPO3 Project is served by Yeoman\n\n');
+                                            console.log('\thttp://' + this.websiteName + '.localhost:8000/typo3/install/');
+                                            console.log('\tPassword: 123456\n');
+                                            console.log('\thttp://' + this.websiteName + '.localhost:8000/typo3/');
+                                            console.log('\tUsername: admin');
+                                            console.log('\tPassword: 12345678\n');
+                                            console.log('\tMySQL Server');
+                                            console.log('\tUsername: root');
+                                            console.log('\tPassword: 123456');
+                                            console.log('\tPort: 33060');
+
+                                        }.bind(this));
+
+                                } else {
+
+                                    console.log('\n\n\t\tA new TYPO3 Project is served by Yeoman\n\n');
+                                    console.log('\thttp://' + this.websiteName + '.localhost/typo3/install/');
+                                    console.log('\tPassword: 123456\n');
+                                    console.log('\thttp://' + this.websiteName + '.localhost/typo3/');
+                                    console.log('\tUsername: admin');
+                                    console.log('\tPassword: 12345678\n\n');
+                                    console.log('Example Apache Configuration:\n');
+                                    console.log('<VirtualHost *:80>\n\n' +
+                                        '\tDocumentRoot "/path/to/' + this.websiteName + '/typo3"\n'+
+                                        '\tServerName ' + this.websiteName + '.local\n\n' +
+                                        '\t<Directory /path/to/' + this.websiteName + '/typo3>\n' +
+                                        '\t\tDirectoryIndex index.php\n' +
+                                        '\t\tOptions -Indexes +FollowSymLinks\n' +
+                                        '\t\tAllowOverride FileInfo Indexes\n' +
+                                        '\t\tOrder allow,deny\n' +
+                                        '\t\tallow from all\n' +
+                                        '\t\t# Only by local development\n' +
+                                        '\t\tRequire all granted\n' +
+                                        '\t</Directory>\n\n' +
+                                        '\tErrorLog "logs/' + this.websiteName + '-error_log"\n' +
+                                        '\tCustomLog "logs/' + this.websiteName + '-access_log" common\n' +
+                                        '</VirtualHost>\n');
+                                }
+
                             }.bind(this));
+
                     } else if (this.gruntTask === 'gruntNothing') {
+
                         console.log('\n\n\t\tA new TYPO3 Project is served by Yeoman\n\n');
+
                     }
                 }.bind(this)
             });
@@ -224,6 +255,17 @@ Typo3Generator.prototype.askFor = function askFor () {
             name: 'Do nothing',
             value: 'gruntNothing'
         }]
+    },{
+        type: 'list',
+        name: 'vagrantMachine',
+        message: 'Would you like to have a Vagrant VM machine for your project?',
+        choices: [{
+            name: 'I take it :)',
+            value: 'Yes'
+        },{
+            name: 'Nope',
+            value: 'No'
+        }]
     }];
 
     this.prompt(prompts, function (answers) {
@@ -273,6 +315,7 @@ Typo3Generator.prototype.askFor = function askFor () {
         this.supportLess            = hasLang('less');
         this.supportSass            = hasLang('sass');
         this.supportCompass         = hasLang('compass');
+        this.supportVagrant         = answers.vagrantMachine;
 
         this.year                   = today.getFullYear();
 
@@ -296,6 +339,15 @@ Typo3Generator.prototype.app = function app () {
     this.copy('db/_ReadOnly.sql',   'db/' + this.websiteDirectory + '_ReadOnly.sql');
     this.copy('db/_Structure.sql',  'db/' + this.websiteDirectory + '_Structure.sql');
     this.copy('denyhtaccess',       'db/.htaccess');
+
+
+    /**
+     * Vagrant files
+     */
+    if (this.supportVagrant === 'yes') {
+        this.template('bootstrap.sh','bootstrap.sh');
+        this.template('Vagrantfile', 'Vagrantfile');
+    }
 
 
     /**

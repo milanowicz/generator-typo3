@@ -1,5 +1,4 @@
-<%= websiteName %>
-=======================
+# <%= websiteName %>
 
 That's a TYPO3 Basic Installation Package with a Database Dump to really get started fast. 
 It's like an Intruction Package but here are the basic settings in TYPO3 are configure 
@@ -10,8 +9,7 @@ and the new project can be versioning by Git in a repository.
 *   Recommended TYPO3 CMS Framework Version 6.2
 
 
-TYPO3 Extension
---------------
+## TYPO3 Extension
 
 *   Flux: Fluid FlexForms v6.0.1
 *   VHS: ViewHelpers v1.8.2
@@ -25,16 +23,14 @@ TYPO3 Extension
 *   phpMyadmin v4.16.0
 
 
-
-TYPO3 Project Installation
-=======================
+## TYPO3 Project Installation
 
 Copy or create symlinks from the TYPO3 sourcecode
 
     <%= websiteDirectory %>/typo3/typo3
     <%= websiteDirectory %>/typo3/index.php
 
-or execute a GruntJS task
+or execute a GruntJS task.
 
     $ grunt bgShell:symlinks
 	
@@ -43,28 +39,27 @@ Have you access problems with TYPO3, then check this folder
     chmod 777 <%= websiteName %>/typo3/typo3temp/
     chmod 777 <%= websiteName %>/typo3/fileadmin
 
-or GruntJS task
+or GruntJS task.
 
     $ grunt bgShell:setRights
 
+Copy htaccess file
 
-Database Settings
---------------
+    $ cp <%= _.slugify(websiteName) %>/typo3/_.htaccess <%= websiteName %>/typo3/.htaccess
+
+
+### Database Settings
 
     <%= websiteName %>/typo3/typo3conf/LocalDevelopment.php
 
-        $GLOBALS['TYPO3_CONF_VARS']['DB']['username'] = '';
-        $GLOBALS['TYPO3_CONF_VARS']['DB']['password'] = '';
+        <% if (supportVagrant === 'Yes') { %>$GLOBALS['TYPO3_CONF_VARS']['DB']['username'] = '';
+        $GLOBALS['TYPO3_CONF_VARS']['DB']['password'] = '';<% } else { %>$GLOBALS['TYPO3_CONF_VARS']['DB']['username'] = 'root';
+        $GLOBALS['TYPO3_CONF_VARS']['DB']['password'] = '123456';<% } %>
 		$GLOBALS['TYPO3_CONF_VARS']['DB']['database'] = '<%= _.slugify(websiteName) %>';
 		$GLOBALS['TYPO3_CONF_VARS']['DB']['host']     = '127.0.0.1';
-    
-		$GLOBALS['TYPO3_CONF_VARS']["GFX"]['im_path']      = 'C:\\Program Files (x86)\\ImageMagick-6.8.6-Q16\\';
-		$GLOBALS['TYPO3_CONF_VARS']["GFX"]['im_path_lzw']  = 'C:\\Program Files (x86)\\ImageMagick-6.8.6-Q16\\';
-		$GLOBALS['TYPO3_CONF_VARS']["GFX"]['im_version_5'] = 'im6';
 	
 	
-TypoScript Settings
-----------------
+### TypoScript Settings
 
     <%= websiteName %>/typo3/system/_shared/Configuration/TypoScript/Setup/LocalDevelopment.ts
 
@@ -84,11 +79,80 @@ TypoScript Settings
         }
         page.includeJSFooter {
 	        MainJS = system/<%= websiteProject %>/Resources/Public/JS/Script.js
-        }
+        }<% if (supportVagrant === 'Yes') { %>
 
 
-Database Sync Script Settings
-----------------
+### Vagrant
+
+Init and config develop environment
+
+    $ vagrant up
+
+Stop VM machine
+
+    $ vagrant halt
+
+Destory develop environment
+
+    $ vagrant destroy
+
+
+#### Development URLs
+
+MySQL Server
+
+    127.0.0.1:33060
+
+Apache Server
+
+    *.<%= _.slugify(websiteName) %>.localhost:8000<% } else { %>
+
+
+### Apache Vhost Settings
+
+    your/apache/vhost.conf
+
+        # <%= websiteName %>
+        <VirtualHost *:80>
+
+            DocumentRoot "/path/to/<%= _.slugify(websiteName) %>/typo3"
+            ServerName <%= _.slugify(websiteName) %>.localhost
+
+            <Directory /path/to/typo3/<%= _.slugify(websiteName) %>/typo3>
+                DirectoryIndex index.php
+				Options -Indexes +FollowSymLinks
+				AllowOverride FileInfo Indexes
+                Order allow,deny
+                allow from all
+                # Only by local development
+                Require all granted
+            </Directory>
+
+            ErrorLog "logs/<%= _.slugify(websiteName) %>-error.log"
+            CustomLog "logs/<%= _.slugify(websiteName) %>-access.log" common
+
+        </VirtualHost><% } %>
+
+
+## Project Handling
+
+
+### TYPO3 Backend
+
+    <% if (supportVagrant === 'Yes') { %>http://<%= _.slugify(websiteDirectory) %>.localhost:8000/typo3<% } else [ %>http://<%= _.slugify(websiteDirectory) %>.localhost/typo3<% } %>
+
+*   Username: admin
+*   Password: 12345678
+
+
+### TYPO3 Install Tool
+
+    <% if (supportVagrant === 'Yes') { %>http://<%= _.slugify(websiteDirectory) %>.localhost:8000/typo3/install<% } else [ %>http://<%= _.slugify(websiteDirectory) %>.localhost/typo3/install<% } %>
+
+*   Password: 123456
+
+
+### Database Sync Script Settings
 
 At this point you can rename the Database Dump to the Project name and get ready to start.
 
@@ -112,70 +176,22 @@ At this point you can rename the Database Dump to the Project name and get ready
 	$ grunt sync-db
 
 
-Apache Vhost Settings
----------------
-
-    $ cp <%= _.slugify(websiteName) %>/typo3/_.htaccess <%= websiteName %>/typo3/.htaccess
-
-    your/apache/vhost.conf
-
-        # <%= websiteName %>
-        <VirtualHost *:80>
-
-            DocumentRoot "/path/to/<%= _.slugify(websiteName) %>/typo3"
-            ServerName <%= _.slugify(websiteName) %>.localhost
-
-            <Directory /path/to/typo3/<%= _.slugify(websiteName) %>/typo3>
-                DirectoryIndex index.php
-				Options -Indexes +FollowSymLinks
-				AllowOverride FileInfo Indexes
-                Order allow,deny
-                allow from all
-                # Only by local development
-                Require all granted
-            </Directory>
-
-            ErrorLog "logs/<%= _.slugify(websiteName) %>-error.log"
-            CustomLog "logs/<%= _.slugify(websiteName) %>-access.log" common
-
-        </VirtualHost>
+## GruntJS
 
 
-Project Handling
-=======================
-
-
-TYPO3 Backend
-----------------
-
-    http://<%= _.slugify(websiteDirectory) %>.localhost/typo3
-
-*   Username: admin
-*   Password: 12345678
-
-
-TYPO3 Install Tool
-----------------
-
-    http://<%= _.slugify(websiteDirectory) %>.localhost/typo3/install
-
-*   Password: 123456
-
-
-GruntJS
-=======================
-
-Install
+### Install
 
     $ npm install -g grunt-cli
+
+### Usage
+
+Generate and watch the files while you develop
+
+    $ grunt serve
 
 TYPO3 install
 
     $ grunt install
-
-Usage
-
-    $ grunt serve
 
 Build all files
 
@@ -190,17 +206,16 @@ Download content
     $ grunt content
 
 
-
-Bower
-=======================
+## Bower
 
 Software Packet Managemnt System for the Frontend Software like JavaScript and Styles files.
 
-Install
+
+### Install
 
     $ npm install -g bower
 
-Usage
+### Usage
 
     $ bower install
 
@@ -209,18 +224,17 @@ Usage
     $ bower search <Package Name>
 
 
-Composer
-=======================
+## Composer
 
 Software Packet Managemnt System to handle the TYPO3 CMS Framework.
 
 
-Install
+### Install
 
     $ curl -sS https://getcomposer.org/installer | php
 
 
-Usage
+### Usage
 
     $ composer install
     $ php composer.phar install

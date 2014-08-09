@@ -15,6 +15,7 @@ Thumbs.db
 *.ogv
 *.webm
 *.zip
+*.rar
 *.tar
 *.bz2
 *.gz
@@ -28,9 +29,10 @@ local.json
 local.sh
 
 /doc/JavaScript/
-<% if (supportSass) { %>.sass-cache<% } %>
-<%= bowerDirectory %>
-node_modules/
+<% if (supportVagrant === 'Yes') { %>/.vagrant/
+<% } if (supportSass) { %>/.sass-cache/<% } %>
+/<%= bowerDirectory %>/
+/node_modules/
 npm-debug.log
 
 /typo3/index.php

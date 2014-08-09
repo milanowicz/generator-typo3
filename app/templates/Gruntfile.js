@@ -309,18 +309,11 @@ module.exports = function(grunt) {
                 args: ['--verbose', '--compress'],
                 exclude: [
                     '.git*', 'node_modules', '<%= bowerDirectory %>', 'vendor',
-                    '*.mov', '*.mp4', '*.mp3', '*.ogg', '*.ogv', '*.webm',
-                    '*.zip', '*.tar', '*.bz2', '*.gz', '*.log'
+                    '*.mov', '*.mp4', '*.mp3', '*.ogg', '*.ogv', '*.webm', '*.wmv',
+                    '*.zip', '*.7z', '*.tar', '*.bz2', '*.gz', '*.rar', '*.log'
                 ],
                 recursive: true,
                 ssh: true
-            },
-            content: {
-                options: {
-                    src: '<%%= setting.prod.user %>@<%%= setting.prod.host %>/files/TYPO3Content.tar',
-                    dest: '.',
-                    privateKey: '<%%= setting.prod.key %>'
-                }
             },
             fileadmin: {
                 options: {
@@ -433,8 +426,7 @@ module.exports = function(grunt) {
         'clean',
         'distribute-files',
         'copy:dist',
-        'doc',
-        'notify:all'
+        'doc'
     ]);
 
     grunt.registerTask('install', [
