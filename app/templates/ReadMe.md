@@ -139,7 +139,7 @@ Apache Server
 
 ### TYPO3 Backend
 
-    <% if (supportVagrant === 'Yes') { %>http://<%= _.slugify(websiteDirectory) %>.localhost:8000/typo3<% } else [ %>http://<%= _.slugify(websiteDirectory) %>.localhost/typo3<% } %>
+    <% if (supportVagrant === 'Yes') { %>http://<%= _.slugify(websiteDirectory) %>.localhost:8000/typo3<% } else { %>http://<%= _.slugify(websiteDirectory) %>.localhost/typo3<% } %>
 
 *   Username: admin
 *   Password: 12345678
@@ -147,7 +147,7 @@ Apache Server
 
 ### TYPO3 Install Tool
 
-    <% if (supportVagrant === 'Yes') { %>http://<%= _.slugify(websiteDirectory) %>.localhost:8000/typo3/install<% } else [ %>http://<%= _.slugify(websiteDirectory) %>.localhost/typo3/install<% } %>
+    <% if (supportVagrant === 'Yes') { %>http://<%= _.slugify(websiteDirectory) %>.localhost:8000/typo3/install<% } else { %>http://<%= _.slugify(websiteDirectory) %>.localhost/typo3/install<% } %>
 
 *   Password: 123456
 

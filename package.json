@@ -1,6 +1,6 @@
 {
   "name": "generator-typo3",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Yeoman generator for TYPO3 6.x",
   "keywords": [
     "yeoman-generator",
